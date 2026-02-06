@@ -4,7 +4,7 @@ import { CameraIcon, PencilSquareIcon, CheckCircleIcon, XCircleIcon } from '@her
 import { useRouter } from 'next/navigation';
 import { getUser } from '@/services/api/users';
 import { getUserProjectTasks } from '@/services/api/tasks';
-import { ProfileSkeletonLoader } from '@/components/SkeletonLoader';
+// import { ProfileSkeletonLoader } from '@/components/SkeletonLoader';
 import { UserData } from '@/types';
 import { useToast } from '@/components/ToastContext';
 import { getCookieData } from '@/utils/cookies';
@@ -107,7 +107,10 @@ const UserProfilePage = ({ params }: { params: Promise<{ id: string }> }) => {
     }
 
     if (isLoading) {
-        return <ProfileSkeletonLoader />;
+        // return <ProfileSkeletonLoader />;
+        return (
+            <div>Loading...</div>
+        )
     }
 
 
