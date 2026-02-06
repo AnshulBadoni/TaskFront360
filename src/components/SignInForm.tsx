@@ -7,9 +7,8 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { setCookie } from "cookies-next";
 import { useToast } from "./ToastContext";
-import { getAuthToken, getCookieData, setAuthToken, setUserData } from "@/utils/cookies";
+import { setAuthToken, setUserData } from "@/utils/cookies";
 
 interface LoginResponse {
   status: number;

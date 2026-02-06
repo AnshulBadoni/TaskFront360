@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { getCookieData } from '../utils/cookies';
-import { getUser, getUserImage } from '@/services/api/users';
+import { getUserImage } from '@/services/api/users';
 import UserIconMenu from './UserIconMenu';
 
 // Define the UserData type according to your user object structure
@@ -12,7 +12,6 @@ type UserData = {
 
 const TitleBar = ({ title, children }: { title: string, children: string }) => {
     const [user, setUser] = useState<UserData | null>(null);
-    const [avatar, setAvatar] = useState<string | undefined>(undefined);
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -26,11 +25,9 @@ const TitleBar = ({ title, children }: { title: string, children: string }) => {
             //get from local storage or cookie first, if not found then fetch from API
             if (localStorage.getItem('userImage')) {
                 const image = localStorage.getItem('userImage') || undefined;
-                setAvatar(image);
             } else {
                 const userData = await getUserImage();
                 const image = userData?.data
-                setAvatar(image);
                 localStorage.setItem('userImage', image || '');
             }
         } catch (error) {

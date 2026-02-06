@@ -1,16 +1,14 @@
-let authenticatedUser:boolean | null = null;
-export function setAuthenticatedUser(user: any) {
-    try {
-        authenticatedUser = user;
-        return authenticatedUser;
-    } catch (error) {
-        return "Unable to set user";
-    }
+type AuthenticatedUser = Record<string, unknown> | null;
 
+let authenticatedUser: AuthenticatedUser = null;
+
+export function setAuthenticatedUser(user: AuthenticatedUser) {
+  authenticatedUser = user;
+  return authenticatedUser;
 }
+
 export function getAuthenticatedUser() {
-    const user = authenticatedUser
-    return user;
+  return authenticatedUser;
 }
 
 export const getMediaType = (url: string): 'image' | 'video' | 'audio' | 'document' | null => {

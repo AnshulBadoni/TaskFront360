@@ -25,12 +25,6 @@ const colorPalette = [
 const MemberCard = ({ member }: { member: Member }) => {
   const projectsPreview = member.projects.slice(0, 3);
   const extraCount = Math.max(0, member.projects.length - projectsPreview.length);
-  const initials = member.username
-    .split(" ")
-    .map((p) => p[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
 
   return (
     <div className="relative rounded-xl bg-gray-white shadow-md border border-slate-100 overflow-hidden transition-all duration-300 hover:-translate-y-1">

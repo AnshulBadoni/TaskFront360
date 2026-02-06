@@ -1,10 +1,9 @@
 // import { MobileNav, Sidebar } from "@/components";
 // import { getLoggedInUser } from "@/lib/actions/user.actions";
-import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
-import ChatBot from "@/components/Chatbot";
+// import ChatBot from "@/components/Chatbot";
 export default async function RootLayout({
   children,
 }: Readonly<{

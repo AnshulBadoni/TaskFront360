@@ -2,14 +2,20 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 
-const ThemeContext = createContext(null)
+type ThemeContextValue = {
+    theme: 'light' | 'dark'
+    toggleTheme: () => void
+}
+
+const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const [theme, setTheme] = useState('light')
+    const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
     useEffect(() => {
         // Check for saved theme preference or system preference
-        const savedTheme = localStorage.getItem('theme') ||
+        const savedTheme =
+            (localStorage.getItem('theme') as 'light' | 'dark' | null) ||
             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
         setTheme(savedTheme)
     }, [])
@@ -33,5 +39,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useTheme() {
-    return useContext(ThemeContext)
+    const context = useContext(ThemeContext)
+    if (!context) {
+        throw new Error('useTheme must be used within a ThemeProvider')
+    }
+    return context
 }

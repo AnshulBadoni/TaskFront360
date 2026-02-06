@@ -10,6 +10,8 @@ interface User {
   // Add other user properties as needed
 }
 
+export type UserProfileUpdate = Partial<User> & Record<string, unknown>;
+
 export const getUser = async (username: string) => {
   const token = getAuthToken();
   const response = await fetch(`${API_BASE_URL}/getUser/${username}`, {
@@ -98,7 +100,7 @@ export const getOnlineUserIds = async (): Promise<string[]> => {
 }
 
 
-export const updateUserProfile = async (user: any) => {
+export const updateUserProfile = async (user: UserProfileUpdate) => {
   const token = getAuthToken();
   const response = await fetch(`${API_BASE_URL}/updateProfile`, {
     method: "PATCH",

@@ -1,13 +1,8 @@
 "use client";
 import React, { useState } from 'react';
-import { BellIcon, StarIcon, QuestionMarkCircleIcon, CogIcon } from '@heroicons/react/24/outline';
 import UserIconMenu from './UserIconMenu';
-import CommandPalette from './CommandPalette';
 
 const Navbar = () => {
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-  const [isHelpOpen, setIsHelpOpen] = useState(false);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-10 bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-gray-800">

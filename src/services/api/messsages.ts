@@ -1,5 +1,5 @@
 // services/api/messages.ts
-import { getAuthToken, getCookieData } from '@/utils/cookies';
+import { getAuthToken } from '@/utils/cookies';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://192.168.0.185:3001';
 

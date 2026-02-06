@@ -5,7 +5,6 @@ import {
   PencilSquareIcon,
   TrashIcon,
   ClockIcon,
-  UserCircleIcon,
   CalendarIcon,
   FolderIcon,
   ChatBubbleLeftEllipsisIcon,
@@ -14,7 +13,6 @@ import {
   CheckCircleIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-  EllipsisHorizontalIcon
 } from '@heroicons/react/24/outline';
 import { Task, Message } from "@/types";
 import { useSocket } from "@/components/SocketContext";
@@ -167,17 +165,17 @@ const TaskDetailsModal = ({ task, onClose, onDelete, onEdit, isOpen }: {
     setUploading(false);
   };
 
-  const handleDeleteComment = (commentId: string) => {
-    if (!socket) return;
+  // const handleDeleteComment = (commentId: string) => {
+  //   if (!socket) return;
 
-    // Optimistically remove the comment
-    setComments(prev => prev.filter(c => c.id !== commentId));
+  //   // Optimistically remove the comment
+  //   setComments(prev => prev.filter(c => c.id !== commentId));
 
-    socket.emit('deleteComment', {
-      messageId: commentId,
-      roomId: taskRoomId
-    });
-  };
+  //   socket.emit('deleteComment', {
+  //     messageId: commentId,
+  //     roomId: taskRoomId
+  //   });
+  // };
 
   const handleTypingChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);

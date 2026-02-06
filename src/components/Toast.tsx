@@ -19,7 +19,7 @@ const Toast = ({
   duration?: number;
   onDismiss?: () => void;
 }) => {
-  const timerRef = useRef<NodeJS.Timeout>();
+  const timerRef = useRef<NodeJS.Timeout>(null);
   const positionClasses = {
     "top-left": "top-4 left-4",
     "top-right": "top-4 right-4",

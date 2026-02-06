@@ -154,12 +154,12 @@ export default function KanbanBoard() {
     fetchTasks();
   };
 
-  const requestSort = (key: keyof Task | 'dueDate' | 'project.name') => {
-    setSortConfig(prev => ({
-      key,
-      direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc'
-    }));
-  };
+  // const requestSort = (key: keyof Task | 'dueDate' | 'project.name') => {
+  //   setSortConfig(prev => ({
+  //     key,
+  //     direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc'
+  //   }));
+  // };
 
   const clearFilters = () => {
     setFilters({

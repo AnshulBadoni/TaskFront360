@@ -1,5 +1,5 @@
 "use client"
-import { getProjectTasksById, getUserProjectTasks } from "@/services/api/tasks";
+import { getProjectTasksById } from "@/services/api/tasks";
 import { useEffect, useState } from "react";
 import { StatCard } from "./StatCard";
 

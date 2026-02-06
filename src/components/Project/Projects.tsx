@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import ProjectCards from './ProjectCards';
 import ProjectTable from './ProjectTable';
 import { getUserProjects } from '@/services/api/projects';

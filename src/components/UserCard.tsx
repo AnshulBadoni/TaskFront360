@@ -1,6 +1,3 @@
-import Image from 'next/image'
-
-
 interface User {
   id: string
   username: string

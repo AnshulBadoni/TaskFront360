@@ -1,5 +1,3 @@
-import { UserCircleIcon } from '@heroicons/react/24/outline';
-
 interface AvatarProps {
   src?: string;
   name: string;
@@ -15,16 +13,16 @@ export const Avatar = ({ src, name, size = 'md', status, className = '' }: Avata
     md: 'h-10 w-10 text-base',
     lg: 'h-12 w-12 text-lg',
   };
-  
+
   const statusClasses = {
     online: 'bg-green-500',
     offline: 'bg-gray-300',
     busy: 'bg-red-500',
     verified: 'bg-blue-500',
   };
-  
+
   const initials = name.split(' ').map(part => part[0]).join('').toUpperCase();
-  
+
   return (
     <div className="relative inline-block">
       {src ? (
@@ -38,15 +36,13 @@ export const Avatar = ({ src, name, size = 'md', status, className = '' }: Avata
           {initials}
         </div>
       )}
-      
+
       {status && (
-        <span className={`absolute bottom-0 right-0 block rounded-full ring-2 ring-white dark:ring-gray-800 ${
-          statusClasses[status]
-        } ${
-          size === 'xs' ? 'h-1.5 w-1.5' : 
-          size === 'sm' ? 'h-2 w-2' : 
-          'h-2.5 w-2.5'
-        }`} />
+        <span className={`absolute bottom-0 right-0 block rounded-full ring-2 ring-white dark:ring-gray-800 ${statusClasses[status]
+          } ${size === 'xs' ? 'h-1.5 w-1.5' :
+            size === 'sm' ? 'h-2 w-2' :
+              'h-2.5 w-2.5'
+          }`} />
       )}
     </div>
   );

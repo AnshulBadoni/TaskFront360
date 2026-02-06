@@ -36,7 +36,7 @@ export const getCookieData = (): UserData | null => {
     const userDataCookie = getCookie('userData');
     // if (!userDataCookie) return null;
     return JSON.parse(userDataCookie as string) as UserData;
-  } catch (error) {
+  } catch {
     return null;
   }
 };
@@ -52,7 +52,7 @@ export const getServerCookieData = (context: GetServerSidePropsContext): UserDat
     const userDataCookie = getCookie('userData', { req: context.req, res: context.res });
     if (!userDataCookie) return null;
     return JSON.parse(userDataCookie as string) as UserData;
-  } catch (error) {
+  } catch {
     return null;
   }
 };
@@ -61,7 +61,7 @@ export const getServerAuthToken = (context: GetServerSidePropsContext): string |
   try {
     const token = getCookie('authToken', { req: context.req, res: context.res });
     return token ? token.toString() : null;
-  } catch (error) {
+  } catch {
     return null;
   }
 };

@@ -44,7 +44,6 @@ export default function ChatPage() {
     const [isTyping, setIsTyping] = useState(false);
     const [typingUser, setTypingUser] = useState<string | null>(null);
     const [showMessageMenu, setShowMessageMenu] = useState<number | null>(null);
-    const [error, setError] = useState<string | null>(null);
     const [filteredAvailableUsers, setFilteredAvailableUsers] = useState<any>([]);
     const [mediaPreview, setMediaPreview] = useState<{ url: string, type: 'image' | 'video' | 'audio' | 'document' } | null>(null);
 
@@ -67,7 +66,7 @@ export default function ChatPage() {
             try {
                 setLoading(true);
                 let userData = await getFriends();
-                let friends = await getUsers();
+                const friends = await getUsers();
                 setFilteredAvailableUsers(friends.filter((user: any) => user.id !== currentUser?.id && !userData.data.some((friend: any) => friend.id === user.id)));
                 if (userData.status != 200) {
                     addToast("error", "Failed to get friends");
@@ -85,10 +84,10 @@ export default function ChatPage() {
                     }));
 
                 setUsers(filteredUsers);
-                setError(null);
+                addToast('success', 'Users loaded successfully.');
             } catch (error) {
                 console.error('Error fetching users:', error);
-                setError('Failed to load users. Please try again later.');
+                addToast('error', 'Failed to load users. Please try again later.');
             } finally {
                 setLoading(false);
             }
@@ -115,12 +114,12 @@ export default function ChatPage() {
     useEffect(() => {
         if (!socket) return;
 
-        const handleUserOnline = (userId: number) => {
-            setOnlineUsers(prev => Array.isArray(prev) ? [...prev, userId] : [userId]);
-        };
-        const handleUserOffline = (userId: number) => {
-            setOnlineUsers(prev => Array.isArray(prev) ? prev.filter(id => id !== userId) : []);
-        };
+        // const handleUserOnline = (userId: number) => {
+        //     setOnlineUsers(prev => Array.isArray(prev) ? [...prev, userId] : [userId]);
+        // };
+        // const handleUserOffline = (userId: number) => {
+        //     setOnlineUsers(prev => Array.isArray(prev) ? prev.filter(id => id !== userId) : []);
+        // };
 
         socket.on('userOnline', getOnlineUsers);
 
@@ -215,7 +214,7 @@ export default function ChatPage() {
         };
 
         const handleError = (errorData: { message?: string }) => {
-            setError(errorData?.message || 'An error occurred');
+            addToast('error', errorData?.message || 'An error occurred');
         };
 
         socket.on('newMessage', handleNewMessage);
@@ -309,7 +308,7 @@ export default function ChatPage() {
                     };
                     reader.onerror = () => {
                         console.error('Error reading file');
-                        setError('Failed to read file. Please try another file.');
+                        addToast('error', 'Failed to read file. Please try another file.');
                     };
                     reader.readAsDataURL(file);
                 } else {
@@ -324,7 +323,7 @@ export default function ChatPage() {
             }
         } catch (error) {
             console.error('Error handling file selection:', error);
-            setError('Failed to process file. Please try again.');
+            addToast('error', 'Failed to process file. Please try again.');
         }
     };
 
@@ -343,7 +342,7 @@ export default function ChatPage() {
         }
 
         setUploading(true);
-        setError(null);
+        addToast('success', 'Message sent successfully.');
 
         try {
             const roomId = `direct-${Math.min(currentUser.id, activeChat)}-${Math.max(currentUser.id, activeChat)}`;
@@ -397,7 +396,7 @@ export default function ChatPage() {
                         }
                     } catch (error) {
                         console.error('Error processing file:', error);
-                        setError(`Failed to process file: ${attachment.file.name}`);
+                        addToast('error', `Failed to process file: ${attachment.file.name}`);
                     }
                 }
             } else if (message.trim()) {
@@ -434,7 +433,7 @@ export default function ChatPage() {
             setAttachments([]);
         } catch (error) {
             console.error('Error sending message:', error);
-            setError('Failed to send message. Please try again.');
+            addToast('error', 'Failed to send message. Please try again.');
         } finally {
             setUploading(false);
         }
@@ -494,10 +493,10 @@ export default function ChatPage() {
             });
 
             setMessages([]);
-            setError(null);
+            addToast('success', 'Chat started successfully.');
         } catch (error) {
             console.error('Error selecting chat:', error);
-            setError('Failed to start chat. Please try again.');
+            addToast('error', 'Failed to start chat. Please try again.');
         }
     };
 
@@ -533,16 +532,16 @@ export default function ChatPage() {
                 roomId
             });
             setShowMessageMenu(null);
-            setError(null);
+            addToast('success', 'Message deleted successfully.');
         } catch (error) {
             console.error('Error deleting message:', error);
-            setError('Failed to delete message. Please try again.');
+            addToast('error', 'Failed to delete message. Please try again.');
         }
     };
 
     const openAddUserModal = async () => {
         setShowAddUserModal(true);
-        setError(null);
+        addToast('success', 'Add user modal opened successfully.');
     };
 
     const closeAddUserModal = () => {
@@ -557,7 +556,7 @@ export default function ChatPage() {
             handleChatSelect(Number(user.id));
         } catch (error) {
             console.error('Error adding user:', error);
-            setError('Failed to add user. Please try again.');
+            addToast('error', 'Failed to add user. Please try again.');
         }
     };
 
@@ -728,8 +727,8 @@ export default function ChatPage() {
                             muted
                             loop
                             className="max-w-xs rounded-lg"
-                            onError={(e) => {
-                                console.error('Error loading video');
+                            onError={() => {
+                                addToast('error', 'Failed to load video. Please try again.');
                             }}
                         >
                             <source src={dataUrl} />
@@ -744,8 +743,8 @@ export default function ChatPage() {
                         <audio
                             controls
                             className="w-full max-w-xs"
-                            onError={(e) => {
-                                console.error('Error loading audio');
+                            onError={() => {
+                                addToast('error', 'Failed to load audio. Please try again.');
                             }}
                         >
                             <source src={dataUrl} />

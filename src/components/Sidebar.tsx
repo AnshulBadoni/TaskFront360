@@ -7,7 +7,6 @@ import { getUserProjects } from "@/services/api/projects";
 import ProjectModal from "./Project/ProjectModal";
 import Link from "next/link";
 
-const inter = Inter({ subsets: ['latin'] });
 
 const Sidebar = () => {
   const pathname = usePathname();

@@ -12,24 +12,18 @@ const TaskLoading = () => {
                             <div className="h-3 w-full rounded bg-slate-100 animate-pulse" />
                             <div className="h-3 w-5/6 rounded bg-slate-100 animate-pulse" />
                         </div>
-                        <div className="h-6 w-14 rounded-full bg-slate-200/80 animate-pulse" />
+                        <div className="h-6 w-16 rounded-full bg-slate-200/80 animate-pulse" />
                     </div>
-
                     <div className="mt-5 flex items-center justify-between">
-                        <div className="h-3 w-32 rounded bg-slate-200/80 animate-pulse" />
+                        <div className="h-3 w-24 rounded bg-slate-200/80 animate-pulse" />
                         <div className="flex -space-x-2">
                             {[...Array(3)].map((_, j) => (
                                 <div key={j} className="h-7 w-7 rounded-full border-2 border-white bg-slate-200/80 animate-pulse" />
                             ))}
                         </div>
                     </div>
-
-                    <div className="mt-5 h-2 rounded-full bg-slate-100 overflow-hidden">
-                        <div className="h-full w-1/2 rounded-full bg-gradient-to-r from-slate-200 to-slate-100 animate-pulse" />
-                    </div>
-
                     <div className="mt-4 flex items-center justify-between">
-                        <div className="h-3 w-24 rounded bg-slate-200/80 animate-pulse" />
+                        <div className="h-3 w-20 rounded bg-slate-200/80 animate-pulse" />
                         <div className="h-5 w-16 rounded bg-slate-200/80 animate-pulse" />
                     </div>
                 </div>

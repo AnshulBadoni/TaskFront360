@@ -27,13 +27,17 @@ const CustomSelect = ({
 }
 ) => {
   const [isOpen, setIsOpen] = useState(false);
-  const selectRef = useRef(null);
+  const selectRef = useRef<HTMLDivElement | null>(null);
   
   const selectedOption = options.find(opt => opt.value === value);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (selectRef.current && !selectRef.current.contains(event.target)) {
+      if (
+        selectRef.current &&
+        event.target instanceof Node &&
+        !selectRef.current.contains(event.target)
+      ) {
         setIsOpen(false);
       }
     };

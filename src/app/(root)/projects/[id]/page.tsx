@@ -2,12 +2,12 @@ import React from 'react';
 import TitleBar from '@/components/TitleBar';
 import { UserCard } from '@/components/UserCard';
 import { ProgressBar } from '@/components/ProgressBar';
-import { ActivityFeed } from '@/components/ActivityFeed';
+// import { ActivityFeed } from '@/components/ActivityFeed';
 import { TaskStatistics } from '@/components/TaskStatistics';
 import { getProjectByName } from '@/services/api/projects';
 import { getUserProjectTasks } from '@/services/api/tasks';
 import Link from 'next/link';
-import TaskCards from '@/components/Task/TaskCards';
+// import TaskCards from '@/components/Task/TaskCards';
 import Tasks from '@/components/Task/Tasks';
 
 interface ProjectPageProps {
@@ -22,7 +22,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
     console.log(projectRes, tasksRes, "res");
     let project = projectRes.data[0];
     console.log(project, tasksRes, "pro");
-    let tasks = tasksRes.data.filter((task: any) => task.projectId === project.id);
+    // let tasks = tasksRes.data.filter((task: any) => task.projectId === project.id);
     return (
         <section className="p-6 space-y-8">
             {/* Project Header Section */}

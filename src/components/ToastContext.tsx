@@ -77,7 +77,7 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
             <Toast
               type={toast.type as "success" | "error" | "warning" | "info"}
               message={toast.message}
-              onClose={() => setToasts(prev => prev.filter(t => t.id !== toast.id))}
+              onDismiss={() => setToasts(prev => prev.filter(t => t.id !== toast.id))}
             />
           </div>
         ))}

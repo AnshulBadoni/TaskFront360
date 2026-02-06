@@ -3,16 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import TaskLoading from '@/components/Task/TaskLoading';
 import {
-    UserCircleIcon,
     TableCellsIcon,
     Squares2X2Icon,
-    ArrowRightIcon,
-    ChatBubbleLeftEllipsisIcon,
-    EnvelopeIcon,
-    LockClosedIcon
 } from '@heroicons/react/24/outline';
 import { getUserProjects } from '@/services/api/projects';
-import Link from 'next/link';
 import TitleBar from '@/components/TitleBar';
 import { StatCard } from '@/components/StatCard';
 import MemberCard from '@/components/MemberCard';

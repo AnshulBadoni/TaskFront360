@@ -17,10 +17,9 @@ import { useRouter } from 'next/navigation';
 import { getUserProjectTasks } from '@/services/api/tasks';
 import { getConversations } from '@/services/api/messsages';
 // import { ProfileSkeletonLoader } from '@/components/SkeletonLoader';
-import { User, UserData } from '@/types';
+import { UserData } from '@/types';
 import { useToast } from '@/components/ToastContext';
 import { getCookieData } from '@/utils/cookies';
-import Masonry from 'react-masonry-css';
 import { getUserImage } from '@/services/api/users';
 import { Task } from '@/types';
 
@@ -46,7 +45,6 @@ const UserProfilePage = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedUser, setEditedUser] = useState<Partial<UserData>>({});
     const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
     const [stats, setStats] = useState({
         totalProjects: 0,
         totalTasks: 0,
@@ -83,7 +81,6 @@ const UserProfilePage = () => {
 
     const fetchAllData = async () => {
         try {
-            setIsLoading(true);
             await Promise.all([
                 fetchUserImage(),
                 fetchUserStats(),
@@ -94,7 +91,6 @@ const UserProfilePage = () => {
             console.error('Error fetching data:', error);
             addToast('error', 'Failed to load profile data');
         } finally {
-            setIsLoading(false);
         }
     };
 
@@ -236,11 +232,11 @@ const UserProfilePage = () => {
         );
     }
 
-    const breakpointColumnsObj = {
-        default: 3,
-        1100: 2,
-        700: 1
-    };
+    // const breakpointColumnsObj = {
+    //     default: 3,
+    //     1100: 2,
+    //     700: 1
+    // };
 
     return (
         <div className="">

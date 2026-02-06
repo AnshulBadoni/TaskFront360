@@ -62,7 +62,7 @@ const UserIconMenu = () => {
 
   const handleLogout = () => {
     deleteCookieData();
-    router.push("/sign-in");
+    router.push("/login");
   };
 
   if (!mounted || !user || !user.username) return null;
