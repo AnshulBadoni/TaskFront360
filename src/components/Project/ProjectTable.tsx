@@ -69,7 +69,7 @@ const ProjectTable = ({ projects }: { projects: Project[] }) => {
             {sorted.map((project) => (
               <tr key={project.id} className="hover:bg-slate-50/70">
                 <td className="px-6 py-4">
-                  <Link href={`/projects/${project.name}`} className="min-w-0">
+                  <Link href={`/projects/${project.id}`} className="min-w-0">
                     <div className="text-sm font-semibold text-slate-900 truncate">
                       {project.name}
                     </div>

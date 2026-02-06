@@ -4,10 +4,9 @@ import { UserCard } from '@/components/UserCard';
 import { ProgressBar } from '@/components/ProgressBar';
 // import { ActivityFeed } from '@/components/ActivityFeed';
 import { TaskStatistics } from '@/components/TaskStatistics';
-import { getProjectByName } from '@/services/api/projects';
+import { getProjectById } from '@/services/api/projects';
 import { getUserProjectTasks } from '@/services/api/tasks';
 import Link from 'next/link';
-// import TaskCards from '@/components/Task/TaskCards';
 import Tasks from '@/components/Task/Tasks';
 
 interface ProjectPageProps {
@@ -15,14 +14,9 @@ interface ProjectPageProps {
 }
 
 const ProjectPage = async ({ params }: ProjectPageProps) => {
-    const [projectRes, tasksRes] = await Promise.all([
-        getProjectByName(params.id),
-        getUserProjectTasks()
-    ]);
-    console.log(projectRes, tasksRes, "res");
-    let project = projectRes.data[0];
-    console.log(project, tasksRes, "pro");
-    // let tasks = tasksRes.data.filter((task: any) => task.projectId === project.id);
+    const projectRes = await getProjectById(params.id)
+    console.log(projectRes, "res");
+    let project = projectRes.data;
     return (
         <section className="p-6 space-y-8">
             {/* Project Header Section */}

@@ -16,7 +16,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const extraCount = Math.max(0, users.length - displayUsers.length);
 
   return (
-    <Link href={`/projects/${project.name}`} className="block h-full">
+    <Link href={`/projects/${project.id}`} className="block h-full">
       <div className="relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-[0_8px_24px_rgba(2,6,23,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(2,6,23,0.10)]">
         <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-indigo-200/30 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
