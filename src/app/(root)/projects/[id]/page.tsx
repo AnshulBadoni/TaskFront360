@@ -5,9 +5,9 @@ import { ProgressBar } from '@/components/ProgressBar';
 // import { ActivityFeed } from '@/components/ActivityFeed';
 import { TaskStatistics } from '@/components/TaskStatistics';
 import { getProjectById } from '@/services/api/projects';
-import { getUserProjectTasks } from '@/services/api/tasks';
 import Link from 'next/link';
 import Tasks from '@/components/Task/Tasks';
+import ReportGenerator from '@/components/Project/ReportGenerator';
 
 interface ProjectPageProps {
     params: { id: string };
@@ -35,11 +35,16 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
                         <ProgressBar project={project} />
                     </div>
                 </div>
-
                 <div className="text-gray-500 dark:text-neutral-400">
                     <p className="text-sm lg:text-lg"><span className='capitalize'>{project.description[0]}</span>{project.description.slice(1)}</p>
                 </div>
             </div>
+            {/* report generate button */}
+            <ReportGenerator
+                projectId={project.id}
+                project={project}
+                users={project.users || []}
+            />
 
             {/* Quick Stats Section */}
             <TaskStatistics project={project} />
